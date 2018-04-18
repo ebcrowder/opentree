@@ -1,0 +1,29 @@
+h1,
+h2 {
+  font-weight: normal;
+}
+
+.table,
+.sch {
+  background-color: transparent !important;
+  color: white !important;
+}
+
+.table-available {
+  background-color: transparent;
+  color: black;
+}
+
+tr:hover {
+  color: black;
+}
+
+abbr {
+  color: black;
+}
+
+.tableframe {
+  background: linear-gradient(lightslategrey, transparent),
+    linear-gradient(-45deg, black, transparent);
+  background-blend-mode: multiply;
+}

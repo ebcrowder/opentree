@@ -1,0 +1,28 @@
+h1,
+h2 {
+  font-weight: normal;
+}
+
+.box {
+  background: linear-gradient(cyan, transparent),
+    linear-gradient(-45deg, magenta, transparent);
+  background-blend-mode: multiply;
+  margin-bottom: 300px !important;
+}
+
+.title,
+.subtitle {
+  text-align: center;
+}
+
+html,
+body {
+  background: linear-gradient(cyan, transparent),
+    linear-gradient(-45deg, magenta, transparent);
+  background-blend-mode: multiply;
+}
+
+.titlemoji {
+  font-size: 40px;
+  text-align: center;
+}

@@ -1,0 +1,23 @@
+h1,
+h2 {
+  font-weight: normal;
+}
+
+.container {
+  margin-top: 50px !important;
+}
+
+table {
+  background-color: transparent;
+  color: white;
+}
+
+tr:hover {
+  color: black;
+}
+
+.tableframe {
+  background: linear-gradient(lightslategrey, transparent),
+    linear-gradient(-45deg, black, transparent);
+  background-blend-mode: multiply;
+}

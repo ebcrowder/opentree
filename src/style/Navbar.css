@@ -1,0 +1,13 @@
+h1,
+h2 {
+  font-weight: normal;
+}
+.navbar-item {
+  font-size: 30px;
+}
+
+.navbar {
+  background: linear-gradient(cyan, transparent),
+    linear-gradient(-45deg, magenta, transparent);
+  background-blend-mode: multiply;
+}
