@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import '../style/Login.css';
 
 class Login extends Component {
@@ -43,10 +42,11 @@ class Login extends Component {
                 </div>
                 <div className="field">
                   <p className="control">
-                    <Link to="/summary" className="button is-danger">
+                    <a href="/auth/google" className="button is-danger">
                       Login
-                    </Link>
+                    </a>
                   </p>
+                  <p>Login with Google</p>
                 </div>
               </div>
             </div>

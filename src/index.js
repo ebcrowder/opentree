@@ -1,26 +1,22 @@
+import 'bulma/css/bulma.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import registerServiceWorker from './registerServiceWorker';
+import { Provider } from 'react-redux';
+import reduxThunk from 'redux-thunk';
+import { createStore, applyMiddleware } from 'redux';
 
-import Login from './components/Login';
-import Summary from './components/Summary';
-import Account from './components/Account';
-import SelectedClass from './components/SelectedClass';
+import App from './components/App';
+import reducers from './reducers';
 
-import 'bulma/css/bulma.css';
+// Development only axios helpers!
+import axios from 'axios';
+window.axios = axios;
+
+const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
 ReactDOM.render(
-  <BrowserRouter>
-    <div>
-      <Switch>
-        <Route path="/selectedclass" component={SelectedClass} />
-        <Route path="/account" component={Account} />
-        <Route path="/summary" component={Summary} />
-        <Route path="/" component={Login} />
-      </Switch>
-    </div>
-  </BrowserRouter>,
-  document.getElementById('root')
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.querySelector('#root')
 );
-registerServiceWorker();
