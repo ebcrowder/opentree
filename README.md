@@ -1,4 +1,4 @@
-Open source management software serving yoga studios and other businesses in the health & wellness industry. See below for a summary of tech utilized on this project:
+#Open source management software serving yoga studios and other businesses in the health & wellness industry. See below for a summary of tech utilized on this project:
 
 Front-end:
 
