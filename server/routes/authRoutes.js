@@ -31,6 +31,7 @@ module.exports = app => {
 
   // routes for class data
 
+  // create new course
   app.post('/api/course', async (req, res) => {
     const { date, time, course, teacher, room, duration } = req.body;
 
@@ -51,15 +52,23 @@ module.exports = app => {
     }
   });
 
+  // get all courses
   app.get('/api/course', (req, res) => {
     Course.find({}, function(err, course) {
       var courseMap = {};
 
-      course.forEach(function(user) {
+      course.forEach(function(course) {
         courseMap[course._id] = course;
       });
 
       res.send(courseMap);
+    });
+  });
+
+  // get specific course by id
+  app.get('/api/course/:_id', (req, res) => {
+    Course.find('_id', function(err, course) {
+      res.send(course.date);
     });
   });
 };

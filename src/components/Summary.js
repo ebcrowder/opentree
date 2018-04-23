@@ -12,21 +12,29 @@ class Summary extends Component {
   }
 
   renderCourses() {
-    return this.props.course.map(item => (
-      <div className="container" key={item._id}>
-        <li>{item.date}</li>
-      </div>
-    ));
+    const data = this.props.course;
+    return Object.keys(data).map(key => {
+      return (
+        <tr className="itemlist" key={data[key]._id}>
+          <td>{data[key].date}</td>
+          <td>{data[key].time}</td>
+          <td>{data[key].course}</td>
+          <td>{data[key].teacher}</td>
+          <td>{data[key].room}</td>
+          <td>{data[key].duration}</td>
+          <td>
+            <Link to="/SelectedClass">Join</Link>
+          </td>
+        </tr>
+      );
+    });
   }
 
   render() {
-    console.log(this.renderCourses());
-    console.log(this.props.course);
     return (
       <div className="tableframe">
         <Navbar />
         <section className="hero is-fullheight">
-          {this.renderCourses()}
           <div className="tile is-parent">
             <article className="tile is-child notification is-dark">
               <p className="title">Class Schedule</p>
@@ -64,18 +72,14 @@ class Summary extends Component {
                           Duration
                         </abbr>
                       </th>
+                      <th>
+                        <abbr className="sch" title="Join">
+                          Join
+                        </abbr>
+                      </th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr>
-                      <td>May 1, 2018</td>
-                      <td>5:00 AM</td>
-                      <td>Ashtanga 1</td>
-                      <td>Shanti</td>
-                      <td>Main</td>
-                      <td>1.5 hours</td>
-                    </tr>
-                  </tbody>
+                  <tbody>{this.renderCourses()}</tbody>
                 </table>
               </div>
             </article>
@@ -111,19 +115,7 @@ class Summary extends Component {
                       </th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr>
-                      <td>May 1, 2018</td>
-                      <td>5:00 AM</td>
-                      <td>Ashtanga 1</td>
-                      <td>Shanti</td>
-                      <td>Main</td>
-                      <td>1.5 hours</td>
-                      <td>
-                        <Link to="/SelectedClass">Join</Link>
-                      </td>
-                    </tr>
-                  </tbody>
+                  <tbody>{this.renderCourses()}</tbody>
                 </table>
               </div>
             </article>
