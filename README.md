@@ -1,6 +1,6 @@
 # tree
 
-Open source management software serving yoga studios and other businesses in the health & wellness industry. The application features authentication via OAuth 2.0, billing, scheduling and other functions for both employees and clients.
+Open source management software serving yoga studios and other businesses in the health & wellness industry. The application features authentication via OAuth 2.0, scheduling and other functions for both employees and clients.
 
 ## Deployment
 
