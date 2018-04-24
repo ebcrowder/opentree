@@ -23,7 +23,7 @@ class Summary extends Component {
           <td>{data[key].room}</td>
           <td>{data[key].duration}</td>
           <td>
-            <Link to="/SelectedClass">Join</Link>
+            <Link to={`/selectedclass/${data[key]._id}`}>Join</Link>
           </td>
         </tr>
       );

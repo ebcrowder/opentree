@@ -18,7 +18,7 @@ class App extends Component {
       <div>
         <BrowserRouter>
           <Switch>
-            <Route path="/selectedclass" component={SelectedClass} />
+            <Route path="/selectedclass/:id" component={SelectedClass} />
             <Route path="/account" component={Account} />
             <Route path="/summary" component={Summary} />
             <Route path="/" component={Login} />
