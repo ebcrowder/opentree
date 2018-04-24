@@ -46,7 +46,6 @@ class Login extends Component {
                       Login
                     </a>
                   </p>
-                  <p>Login with Google</p>
                 </div>
               </div>
             </div>
