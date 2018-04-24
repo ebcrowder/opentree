@@ -67,8 +67,12 @@ module.exports = app => {
 
   // get specific course by id
   app.get('/api/course/:_id', (req, res) => {
-    Course.find('_id', function(err, course) {
-      res.send(course.date);
+    Course.find({ _id: req.params['_id'] }, function(err, course) {
+      if (err) {
+        console.error(err);
+        res.send(400);
+      }
+      res.send(course);
     });
   });
 };
