@@ -2,6 +2,8 @@
 
 Open source management software serving yoga studios and other businesses in the health & wellness industry. The application features authentication via OAuth 2.0, scheduling and other functions for both employees and clients.
 
+![alt text](/tree.jpg?raw=true "Tree")
+
 ## Deployment
 
 Deployed on [Heroku](https://sheltered-brushlands-51479.herokuapp.com/)
