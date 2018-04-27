@@ -72,14 +72,9 @@ class Summary extends Component {
                           Duration
                         </abbr>
                       </th>
-                      <th>
-                        <abbr className="sch" title="Join">
-                          Join
-                        </abbr>
-                      </th>
+                      <th />
                     </tr>
                   </thead>
-                  <tbody>{this.renderCourses()}</tbody>
                 </table>
               </div>
             </article>

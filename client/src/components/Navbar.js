@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { logoutUser } from '../actions';
 import '../style/Navbar.css';
 
 class Navbar extends Component {
@@ -9,14 +10,16 @@ class Navbar extends Component {
       case null:
         return;
       case false:
-        return (
-          <li>
-            <a href="/auth/google">Login</a>
-          </li>
-        );
+        return <a href="/auth/google">Please login!</a>;
       default:
         return [<ul key="1">Hello, {this.props.auth.googleName}!</ul>];
     }
+  }
+
+  onClickLogout() {
+    this.props.logoutUser(() => {
+      this.props.history.push('/');
+    });
   }
 
   render() {
@@ -44,6 +47,10 @@ class Navbar extends Component {
                     </span>
                   </Link>
                 </p>
+                <i
+                  className="fas fa-sign-out-alt"
+                  onClick={this.onClickLogout.bind(this)}
+                />
               </div>
             </div>
           </div>
@@ -57,4 +64,4 @@ function mapStateToProps({ auth }) {
   return { auth };
 }
 
-export default connect(mapStateToProps)(Navbar);
+export default connect(mapStateToProps, { logoutUser })(Navbar);

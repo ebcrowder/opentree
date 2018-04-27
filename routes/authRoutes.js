@@ -1,5 +1,6 @@
 const passport = require('passport');
 const mongoose = require('mongoose');
+const requireLogin = require('../middlewares/requireLogin');
 
 const Course = mongoose.model('course');
 
@@ -41,7 +42,8 @@ module.exports = app => {
       course: course,
       teacher: teacher,
       room: room,
-      duration: duration
+      duration: duration,
+      students: students
     });
 
     try {

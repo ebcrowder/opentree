@@ -15,6 +15,10 @@ h2 {
   text-align: center;
 }
 
+.is-danger {
+  margin-left: 80px;
+}
+
 html,
 body {
   background: linear-gradient(cyan, transparent),
