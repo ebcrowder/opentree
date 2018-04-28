@@ -7,7 +7,8 @@ const courseSchema = new Schema({
   course: String,
   teacher: String,
   room: String,
-  duration: Number
+  duration: Number,
+  users: [{ type: Schema.Types.ObjectId, ref: 'users' }]
 });
 
 mongoose.model('course', courseSchema);
