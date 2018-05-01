@@ -3,7 +3,6 @@ import Navbar from './Navbar';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchCourse, fetchUser } from '../actions';
-import _ from 'lodash';
 
 import '../style/Summary.css';
 
@@ -34,18 +33,9 @@ class Summary extends Component {
 
   renderJoinCourses() {
     const data = this.props.course;
-    const userData = _.map(this.props.course, data => {
-      if (data.users !== null) {
-        return data.users[0];
-      }
-    });
-    const auth = _.values(this.props.auth);
 
-    console.log(userData);
-    console.log(auth[0]);
-
-    if (auth[0]) {
-      return Object.keys(data).map(key => {
+    return Object.keys(data).map(key => {
+      if (data[key].users !== null) {
         return (
           <tr className="itemlist" key={data[key]._id}>
             <td>{data[key].date}</td>
@@ -56,8 +46,10 @@ class Summary extends Component {
             <td>{data[key].duration}</td>
           </tr>
         );
-      });
-    }
+      } else {
+        return null;
+      }
+    });
   }
 
   render() {
