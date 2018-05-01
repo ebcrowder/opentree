@@ -4,6 +4,7 @@ export const FETCH_USER = 'fetch_user';
 export const LOGOUT_USER = 'logout_user';
 export const FETCH_COURSE = 'fetch_course';
 export const FETCH_COURSE_BY_ID = 'fetch_course_by_id';
+export const FETCH_JOIN_COURSE_BY_ID = 'fetch_join_course_by_id';
 
 // OAuth flow
 export const fetchUser = () => async dispatch => {
@@ -29,4 +30,11 @@ export const fetchCourseByID = id => async dispatch => {
   const res = await axios.get(`/api/course/${id}`);
 
   dispatch({ type: FETCH_COURSE_BY_ID, payload: res.data });
+};
+
+export const fetchJoinCourseByID = (id, values, history) => async dispatch => {
+  const res = await axios.post(`/api/course/${id}`, values);
+
+  history.push('/summary');
+  dispatch({ type: FETCH_JOIN_COURSE_BY_ID, payload: res.data });
 };

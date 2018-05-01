@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import Navbar from './Navbar';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchCourse } from '../actions';
+import { fetchCourse, fetchUser } from '../actions';
+import _ from 'lodash';
 
 import '../style/Summary.css';
 
 class Summary extends Component {
   componentDidMount() {
     this.props.fetchCourse();
+    this.props.fetchUser();
   }
 
   renderCourses() {
@@ -28,6 +30,34 @@ class Summary extends Component {
         </tr>
       );
     });
+  }
+
+  renderJoinCourses() {
+    const data = this.props.course;
+    const userData = _.map(this.props.course, data => {
+      if (data.users !== null) {
+        return data.users[0];
+      }
+    });
+    const auth = _.values(this.props.auth);
+
+    console.log(userData);
+    console.log(auth[0]);
+
+    if (auth[0]) {
+      return Object.keys(data).map(key => {
+        return (
+          <tr className="itemlist" key={data[key]._id}>
+            <td>{data[key].date}</td>
+            <td>{data[key].time}</td>
+            <td>{data[key].course}</td>
+            <td>{data[key].teacher}</td>
+            <td>{data[key].room}</td>
+            <td>{data[key].duration}</td>
+          </tr>
+        );
+      });
+    }
   }
 
   render() {
@@ -75,6 +105,7 @@ class Summary extends Component {
                       <th />
                     </tr>
                   </thead>
+                  <tbody>{this.renderJoinCourses()}</tbody>
                 </table>
               </div>
             </article>
@@ -121,8 +152,8 @@ class Summary extends Component {
   }
 }
 
-function mapStateToProps({ course }) {
-  return { course };
+function mapStateToProps({ course, auth }) {
+  return { course, auth };
 }
 
-export default connect(mapStateToProps, { fetchCourse })(Summary);
+export default connect(mapStateToProps, { fetchCourse, fetchUser })(Summary);
