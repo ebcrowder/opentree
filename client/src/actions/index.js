@@ -33,7 +33,7 @@ export const fetchCourseByID = id => async dispatch => {
 };
 
 export const joinCourseByID = (id, values) => async dispatch => {
-  const res = await axios.post(`/api/course/${id}`, `{"users_id":"${values}"}`);
+  const res = await axios.post(`/api/course/${id}`, { users_id: values });
 
   dispatch({ type: JOIN_COURSE_BY_ID, payload: res.data });
 };

@@ -15,9 +15,7 @@ class SelectedClass extends Component {
 
   onSubmit() {
     const { id } = this.props.match.params;
-    const auth = _.values(this.props.auth, key => {
-      return key;
-    });
+    const auth = _.values(this.props.auth);
 
     this.props.joinCourseByID(id, auth[0], () => {
       this.props.history.push('/summary');
