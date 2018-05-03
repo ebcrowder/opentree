@@ -20,3 +20,8 @@ h2 {
     linear-gradient(-45deg, magenta, transparent);
   background-blend-mode: multiply;
 }
+
+.subtitle,
+.title {
+  color: black;
+}

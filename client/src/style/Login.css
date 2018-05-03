@@ -3,20 +3,10 @@ h2 {
   font-weight: normal;
 }
 
-.box {
-  background: linear-gradient(cyan, transparent),
-    linear-gradient(-45deg, magenta, transparent);
-  background-blend-mode: multiply;
-  margin-bottom: 300px !important;
-}
-
 .title,
 .subtitle {
   text-align: center;
-}
-
-.is-danger {
-  margin-left: 80px;
+  color: white;
 }
 
 html,
@@ -24,9 +14,21 @@ body {
   background: linear-gradient(cyan, transparent),
     linear-gradient(-45deg, magenta, transparent);
   background-blend-mode: multiply;
+  overflow-y: auto;
 }
 
 .titlemoji {
   font-size: 40px;
   text-align: center;
+}
+
+.login {
+  display: flex;
+  align-items: center;
+}
+
+.button.is-primary.is-inverted.is-outlined:hover,
+.button.is-primary.is-inverted.is-outlined:focus {
+  background-color: transparent;
+  color: black;
 }

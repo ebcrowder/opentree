@@ -40,17 +40,18 @@ class Navbar extends Component {
             <div className="navbar-item">
               <div className="field is-grouped">
                 {this.renderContent()}
-                <p className="control">
-                  <Link to="/account">
-                    <span className="button is-primary is-outlined">
-                      <i className="fas fa-id-card" />
-                    </span>
-                  </Link>
-                </p>
-                <i
-                  className="fas fa-sign-out-alt"
+
+                <a
+                  className="button is-inverted is-primary is-outlined"
                   onClick={this.onClickLogout.bind(this)}
-                />
+                >
+                  Logout
+                </a>
+                <Link to="/account">
+                  <span className="button is-primary is-outlined">
+                    <i className="fas fa-id-card" />
+                  </span>
+                </Link>
               </div>
             </div>
           </div>

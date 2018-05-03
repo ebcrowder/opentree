@@ -22,6 +22,10 @@ abbr {
   color: black;
 }
 
+.is-dark {
+  color: white !important;
+}
+
 .tableframe {
   background: linear-gradient(lightslategrey, transparent),
     linear-gradient(-45deg, black, transparent);

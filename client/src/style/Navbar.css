@@ -3,7 +3,6 @@ h2,
 ul {
   font-weight: normal;
   font-size: 15px;
-  text-align: center;
   color: lightgrey;
   margin: 10px;
 }
@@ -11,8 +10,37 @@ ul {
   font-size: 30px;
 }
 
-.navbar {
+.navbar-brand {
   background: linear-gradient(cyan, transparent),
     linear-gradient(-45deg, magenta, transparent);
   background-blend-mode: multiply;
+}
+
+.navbar-item {
+  display: flex;
+}
+
+.navbar,
+.navbar-menu,
+.navbar-start,
+.navbar-end {
+  align-items: stretch;
+  display: flex;
+  padding: 0;
+}
+
+.navbar-menu {
+  flex-grow: 1;
+  flex-shrink: 0;
+  background: linear-gradient(cyan, transparent),
+    linear-gradient(-45deg, magenta, transparent);
+  background-blend-mode: multiply;
+}
+.navbar-start {
+  justify-content: flex-start;
+  margin-right: auto;
+}
+.navbar-end {
+  justify-content: flex-end;
+  margin-left: auto;
 }

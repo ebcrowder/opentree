@@ -17,13 +17,12 @@ class Login extends Component {
               <h2 className="subtitle">yoga studio software</h2>
 
               <div className="box">
-                <div className="field">
-                  <p className="control">
-                    <a href="/auth/google" className="button is-danger">
-                      Login with Google
-                    </a>
-                  </p>
-                </div>
+                <a
+                  href="/auth/google"
+                  className="button is-inverted is-primary is-outlined login"
+                >
+                  Login with Google
+                </a>
               </div>
             </div>
           </div>

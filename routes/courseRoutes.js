@@ -66,4 +66,19 @@ module.exports = app => {
       }
     );
   });
+
+  // update course assigned to user
+  app.patch('/api/course/:_id', async (req, res) => {
+    const { users_id } = req.body;
+    Course.findOneAndUpdate({ _id: req.params['_id'] }, { users: [] }, function(
+      err,
+      course
+    ) {
+      if (err) {
+        console.error(err);
+        res.send(400);
+      }
+      res.send(course);
+    });
+  });
 };

@@ -5,6 +5,7 @@ export const LOGOUT_USER = 'logout_user';
 export const FETCH_COURSE = 'fetch_course';
 export const FETCH_COURSE_BY_ID = 'fetch_course_by_id';
 export const JOIN_COURSE_BY_ID = 'join_course_by_id';
+export const UPDATE_COURSE_BY_ID = 'update_course_by_id';
 
 // OAuth flow
 export const fetchUser = () => async dispatch => {
@@ -37,4 +38,11 @@ export const joinCourseByID = (id, values, callback) => async dispatch => {
     .post(`/api/course/${id}`, { users_id: values })
     .then(() => callback());
   dispatch({ type: JOIN_COURSE_BY_ID, payload: res.data });
+};
+
+export const updateCourseByID = (id, values, callback) => async dispatch => {
+  const res = await axios
+    .patch(`/api/course/${id}`, { users_id: values })
+    .then(() => callback());
+  dispatch({ type: UPDATE_COURSE_BY_ID, payload: res.data });
 };

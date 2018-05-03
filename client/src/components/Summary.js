@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Navbar from './Navbar';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchCourse, fetchUser } from '../actions';
+import { fetchCourse, fetchUser, updateCourseByID } from '../actions';
 import _ from 'lodash';
 
 import '../style/Summary.css';
@@ -11,6 +11,18 @@ class Summary extends Component {
   componentDidMount() {
     this.props.fetchCourse();
     this.props.fetchUser();
+  }
+
+  componentDidUpdate() {
+    this.props.fetchCourse();
+  }
+
+  onSubmit(id) {
+    const auth = _.values(this.props.auth);
+
+    this.props.updateCourseByID(id, auth[0], () => {
+      this.props.history.push('/summary');
+    });
   }
 
   renderCourses() {
@@ -37,7 +49,9 @@ class Summary extends Component {
     const auth = _.values(this.props.auth);
 
     return Object.keys(data).map(key => {
-      if (data[key].users == auth[0]) {
+      if (!data[key].users) {
+        return <tr />;
+      } else if (data[key].users.join() === auth[0]) {
         return (
           <tr className="itemlist" key={data[key]._id}>
             <td>{data[key].date}</td>
@@ -46,6 +60,9 @@ class Summary extends Component {
             <td>{data[key].teacher}</td>
             <td>{data[key].room}</td>
             <td>{data[key].duration}</td>
+            <td>
+              <a onClick={() => this.onSubmit(data[key]._id)}>Cancel</a>
+            </td>
           </tr>
         );
       } else {
@@ -96,6 +113,9 @@ class Summary extends Component {
                           Duration
                         </abbr>
                       </th>
+                      <th>
+                        <abbr className="sch" title="Cancel" />
+                      </th>
                       <th />
                     </tr>
                   </thead>
@@ -131,7 +151,7 @@ class Summary extends Component {
                         <abbr title="Duration">Duration</abbr>
                       </th>
                       <th>
-                        <abbr title="Join">Join</abbr>
+                        <abbr title="Join" />
                       </th>
                     </tr>
                   </thead>
@@ -150,4 +170,8 @@ function mapStateToProps({ course, auth }) {
   return { course, auth };
 }
 
-export default connect(mapStateToProps, { fetchCourse, fetchUser })(Summary);
+export default connect(mapStateToProps, {
+  fetchCourse,
+  fetchUser,
+  updateCourseByID
+})(Summary);
