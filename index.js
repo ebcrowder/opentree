@@ -4,6 +4,10 @@ const bodyParser = require('body-parser');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 const keys = require('./config/keys');
+
+// GraphQL Express
+import { graphqlExpress } from 'apollo-server-express';
+
 require('./models/User');
 require('./models/Course');
 require('./services/passport');
