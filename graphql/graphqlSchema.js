@@ -1,39 +1,41 @@
-import { makeExecutableSchema } from 'graphql-tools';
-import { resolvers } from './resolvers';
+const { makeExecutableSchema } = require('graphql-tools');
+const { resolvers } = require('./resolvers.js');
+
+// ! denotes a required field
 
 const typeDefs = `
-type Author {
-  id: Int!
-  firstName: String
-  lastName: String
-  """
-  the list of Posts by this author
-  """
-  posts: [Post]
+type User {
+  _id: ID!
+  googleId: String
+  googleName: String
 }
 
-type Post {
-  id: Int!
-  title: String
-  author: Author
-  votes: Int
+type Course {
+  _id: ID!
+  date: String
+  time: String
+  course: String
+  teacher: String
+  room: String
+  duration: Int
+  users: [User]
 }
 
 # the schema allows the following query:
 type Query {
-  posts: [Post]
-  author(id: Int!): Author
+  users: [User]
+  user(_id: ID!): User
+  courses: [Course]
+  course(_id: ID!): Course
 }
 
 # this schema allows the following mutation:
 type Mutation {
-  upvotePost (
-    postId: Int!
-  ): Post
+  joinCourseByID(_id: ID!, users: String): User
 }
 `;
 
-export const schema = makeExecutableSchema({
+exports.schema = makeExecutableSchema({
   typeDefs,
   resolvers
 });

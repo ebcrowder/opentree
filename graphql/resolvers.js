@@ -1,41 +1,57 @@
-import { find, filter } from 'lodash';
-
-// example data
-const authors = [
-  { id: 1, firstName: 'Tom', lastName: 'Coleman' },
-  { id: 2, firstName: 'Sashko', lastName: 'Stubailo' },
-  { id: 3, firstName: 'Mikhail', lastName: 'Novikov' },
+const users = [
+  {
+    _id: '123456',
+    googleId: '78910',
+    googleName: 'Eric'
+  }
 ];
 
-const posts = [
-  { id: 1, authorId: 1, title: 'Introduction to GraphQL', votes: 2 },
-  { id: 2, authorId: 2, title: 'Welcome to Meteor', votes: 3 },
-  { id: 3, authorId: 2, title: 'Advanced GraphQL', votes: 1 },
-  { id: 4, authorId: 3, title: 'Launchpad is Cool', votes: 7 },
+const courses = [
+  {
+    _id: '5ae3c27deecafc202c5461ae',
+    date: 'May 2, 2018',
+    time: '9:00 PM',
+    course: 'test123',
+    teacher: 'Bob Roth',
+    room: 'Main',
+    duration: 30,
+    users: []
+  },
+  {
+    _id: '5468jdfsvdfkvj5404505df',
+    date: 'May 3, 2018',
+    time: '12:00 PM',
+    course: 'test456',
+    teacher: 'Jefferson',
+    room: 'Main',
+    duration: 30,
+    users: []
+  }
 ];
 
-const resolvers = {
+exports.resolvers = {
   Query: {
-    posts: () => posts,
-    author: (_, { id }) => find(authors, { id }),
-  },
-  
-  Mutation: {
-    upvotePost: (_, { postId }) => {
-      const post = find(posts, { id: postId });
-      if (!post) {
-        throw new Error(`Couldn't find post with id ${postId}`);
-      }
-      post.votes += 1;
-      return post;
+    courses: () => {
+      return courses;
     },
+    course: (root, { _id }) => {
+      return courses.find(course => course._id == _id);
+    },
+    users: () => {
+      return users;
+    },
+    user: (root, { _id }) => {
+      return users.find(user => user._id == _id);
+    }
   },
-  
-  Author: {
-    posts: author => filter(posts, { authorId: author.id }),
-  },
-  
-  Post: {
-    author: post => find(authors, { id: post.authorId }),
-  },
+  Mutation: {
+    joinCourseByID: (_id, input) => {
+      if (!courses[_id]) {
+        throw new Error('no course exists with id ' + _id);
+      }
+      // This replaces all old data, but some apps might want partial update.
+      course[_id] = input;
+      return new Course(_id, input);
+    }
+  }
 };

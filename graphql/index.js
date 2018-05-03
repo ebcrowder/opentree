@@ -5,9 +5,33 @@ const cookieSession = require('cookie-session');
 const passport = require('passport');
 const keys = require('./config/keys');
 
+// GraphQL Express
+const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
+const { schema } = require('./graphql/graphqlSchema.js');
 
+const app = express();
+const PORT = 7700;
 
-require('./models/User');
+app.use(
+  '/graphql',
+  bodyParser.json(),
+  graphqlExpress({
+    schema
+  })
+);
+
+app.use(
+  '/graphiql',
+  graphiqlExpress({
+    endpointURL: '/graphql'
+  })
+);
+
+app.listen(PORT, () =>
+  console.log(`GraphQL Server is now running on http://localhost:${PORT}`)
+);
+
+/*require('./models/User');
 require('./models/Course');
 require('./services/passport');
 
@@ -43,4 +67,4 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT);
+app.listen(PORT); */
